@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { MainMenu } from './components/MainMenu';
+import { WordsTable } from './components/WordsTable';
+import { wordsRepository } from './wordsRepository';
 
-function App() {
+export const App = () => {
+  const [words, setWords] = useState(wordsRepository.getAllWords());
+
+  const addWord = ({ name, meaning }) =>
+    setWords(wordsRepository.addWord({ name, meaning }));
+
+  const updateWord = ({ name, meaning }) =>
+    setWords(wordsRepository.updateWord({ name, meaning }));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <MainMenu addWord={addWord} />
+      <WordsTable words={words} updateWord={updateWord} />
     </div>
   );
-}
-
-export default App;
+};
