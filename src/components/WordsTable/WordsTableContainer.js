@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { pipe } from '../../helpers';
 import { HidingMode, SortingMode } from './constants';
-import { getFilterByNameFn, getSortFn, pipe } from './helpers';
+import { getFilterByNameFn, getSortFn } from './helpers';
 import { WordsTable } from './WordsTable';
 import { WordsTableMenu } from './WordsTableMenu';
 

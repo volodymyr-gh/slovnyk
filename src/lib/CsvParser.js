@@ -8,4 +8,8 @@ export class CsvParser {
       });
     });
   }
+
+  toCsv(data) {
+    return Papa.unparse(data);
+  }
 }

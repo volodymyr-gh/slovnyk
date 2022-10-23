@@ -1,8 +1,5 @@
 import { SortingMode } from './constants';
 
-export const pipe = (...fns) => initialArg =>
-  fns.reduce((acc, fn) => fn(acc), initialArg);
-
 export const getFilterByNameFn = name => words =>
   name
     ? words.filter(w => w.name.startsWith(name))

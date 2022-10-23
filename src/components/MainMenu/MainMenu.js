@@ -3,7 +3,7 @@ import { Container, Menu } from 'semantic-ui-react';
 import { CsvImportModal } from '../CsvImportModal';
 import { WordModal } from '../WordModal';
 
-export const MainMenu = ({ addWord, importFromCsv }) => (
+export const MainMenu = ({ addWord, importFromCsv, exportAsCsv }) => (
   <Menu fixed='top' inverted>
     <Container>
       <Menu.Item header>
@@ -17,7 +17,7 @@ export const MainMenu = ({ addWord, importFromCsv }) => (
         trigger={<Menu.Item>Import</Menu.Item>}
         importFromCsv={importFromCsv}
       />
-      <Menu.Item onClick={() => alert("You clicked Export")}>
+      <Menu.Item onClick={exportAsCsv}>
         Export
       </Menu.Item>
       <Menu.Menu position='right'>

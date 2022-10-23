@@ -82,4 +82,12 @@ export class WordsRepository {
 
     return this._getCachedWordsAsArray();
   }
+
+  exportAsCsv() {
+    const words = this._getCachedWordsAsArray()
+      .map(({ name, meaning, addedAt }) =>
+        [name, meaning, addedAt.toISOString()]);
+
+    return this._csvParser.toCsv(words);
+  }
 }
