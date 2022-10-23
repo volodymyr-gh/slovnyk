@@ -4,7 +4,7 @@ import { CsvImportModal } from '../CsvImportModal';
 import { WordModal } from '../WordModal';
 
 export const MainMenu = ({ addWord, importFromCsv, exportAsCsv }) => (
-  <Menu fixed='top' inverted>
+  <Menu fixed='top'>
     <Container>
       <Menu.Item header>
         Slovnyk

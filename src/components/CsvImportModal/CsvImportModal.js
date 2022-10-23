@@ -16,8 +16,10 @@ export const CsvImportModal = ({ trigger, importFromCsv }) => {
 
   return (
     <Modal
-      open={isOpen}
       centered={false}
+      dimmer={'blurring'}
+      size={'fullscreen'}
+      open={isOpen}
       closeOnDimmerClick={false}
       onClose={close}
       onOpen={open}

@@ -16,8 +16,10 @@ export const WordModal = ({ trigger, word, saveWord }) => {
 
   return (
     <Modal
-      open={isOpen}
       centered={false}
+      dimmer={'blurring'}
+      size={'fullscreen'}
+      open={isOpen}
       closeOnDimmerClick={false}
       onClose={close}
       onOpen={open}
