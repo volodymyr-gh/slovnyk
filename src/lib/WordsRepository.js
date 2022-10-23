@@ -1,23 +1,9 @@
 const STORAGE_KEY = 'words';
 
-const MOCK_WORDS = {
-  ditch: {
-    meaning: 'a narrow channel dug in the ground, typically used for drainage alongside a road or the edge of a field (канава)',
-    addedAt: new Date('2022-10-19T21:35:16.437Z')
-  },
-  trait: {
-    meaning: 'a particular characteristic, quality, or tendency that someone or something has (риса)',
-    addedAt: new Date('2022-10-18T21:35:16.437Z')
-  },
-  inculcate: {
-    meaning: 'to cause someone to have particular beliefs or values by repeating them frequently (прищеплювати)',
-    addedAt: new Date('2022-10-20T21:35:16.437Z')
-  }
-};
-
 export class WordsRepository {
-  constructor(storage, csvParser) {
+  constructor(storage, requestIdleCallback, csvParser) {
     this._storage = storage;
+    this._requestIdleCallback = requestIdleCallback;
     this._csvParser = csvParser;
     this._cache = null;
   }
@@ -29,7 +15,14 @@ export class WordsRepository {
 
   _readFromStorageIfNeeded() {
     if (this._cache === null) {
-      this._cache = MOCK_WORDS;
+      const storedWords = this._storage.getItem(STORAGE_KEY) || '{}';
+
+      this._cache = JSON.parse(storedWords, (key, value) => {
+        if (key === 'addedAt') {
+          return new Date(value);
+        }
+        return value;
+      });
     }
   }
 
@@ -66,7 +59,11 @@ export class WordsRepository {
   }
 
   _updateStorage() {
-
+    this._requestIdleCallback(() => {
+      if (this._cache === null) return;
+      const wordsStringified = JSON.stringify(this._cache);
+      this._storage.setItem(STORAGE_KEY, wordsStringified);
+    });
   }
 
   async importFromCsv(file) {
