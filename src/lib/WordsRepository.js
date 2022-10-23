@@ -16,24 +16,24 @@ const MOCK_WORDS = {
 };
 
 export class WordsRepository {
-  constructor(storage) {
+  constructor(storage, csvParser) {
     this._storage = storage;
+    this._csvParser = csvParser;
     this._cache = null;
   }
 
   getAllWords() {
+    this._readFromStorageIfNeeded();
+    return this._getCachedWordsAsArray();
+  }
+
+  _readFromStorageIfNeeded() {
     if (this._cache === null) {
-      this._cache = this._readFromStorage();
+      this._cache = MOCK_WORDS;
     }
-
-    return this._cacheAsArray();
   }
 
-  _readFromStorage() {
-    return MOCK_WORDS;
-  }
-
-  _cacheAsArray() {
+  _getCachedWordsAsArray() {
     return Object.entries(this._cache)
       .map(([name, { meaning, addedAt }]) => ({ name, meaning, addedAt }));
   }
@@ -50,17 +50,36 @@ export class WordsRepository {
     const doesNotExist = !(name in this._cache);
 
     if (doesNotExist || shouldReplaceExisting) {
-      this._cache = Object.assign({}, this._cache, {
+      const updatedWords = Object.assign({}, this._cache, {
         [name]: { meaning, addedAt: new Date() }
       });
+
+      this._updateCache(updatedWords);
     }
 
-    this._updateStorage();
+    return this._getCachedWordsAsArray();
+  }
 
-    return this._cacheAsArray();
+  _updateCache(updatedWords) {
+    this._cache = updatedWords;
+    this._updateStorage();
   }
 
   _updateStorage() {
 
+  }
+
+  async importFromCsv(file) {
+    const parseResult = await this._csvParser.parseFile(file);
+
+    const updatedWords = parseResult
+      .reduce((acc, [name, meaning, addedAtStr]) => ({
+        ...acc,
+        [name]: { meaning, addedAt: new Date(addedAtStr) }
+      }), {});
+
+    this._updateCache(updatedWords);
+
+    return this._getCachedWordsAsArray();
   }
 }

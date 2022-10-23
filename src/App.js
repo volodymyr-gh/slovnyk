@@ -9,12 +9,18 @@ export const App = () => {
   const addWord = ({ name, meaning }) =>
     setWords(wordsRepository.addWord({ name, meaning }));
 
+  const importFromCsv = (file) => {
+    wordsRepository.importFromCsv(file)
+      .then(setWords)
+      .catch(() => alert('Failed to import CSV file'));
+  };
+
   const updateWord = ({ name, meaning }) =>
     setWords(wordsRepository.updateWord({ name, meaning }));
 
   return (
     <div id="app">
-      <MainMenu addWord={addWord} />
+      <MainMenu addWord={addWord} importFromCsv={importFromCsv} />
       <WordsTable words={words} updateWord={updateWord} />
     </div>
   );

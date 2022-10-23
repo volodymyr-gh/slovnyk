@@ -9,7 +9,7 @@ export const WordsTable = ({ hidingMode, words, updateWord }) => {
   const shouldBlurMeanings = hidingMode === HidingMode.MEANINGS_HIDDEN;
 
   return (
-    <Container style={{ marginTop: '2em' }}>
+    <Container style={{ marginTop: '2em', paddingBottom: '4em' }}>
       <Table fixed celled striped>
         <Table.Header>
           <Table.Row>

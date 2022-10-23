@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './WithBlurEffect.css';
 
 export const WithBlurEffect = ({ applyBlur, children }) => {
-  const [isPeekMode, setPeekMode] = useState(false);
-  const togglePeek = () => setPeekMode(currValue => !currValue);
+  const [isInPeekMode, setPeekMode] = useState(false);
+  const togglePeekMode = () => setPeekMode(currValue => !currValue);
 
   useEffect(() => {
     if (applyBlur) setPeekMode(false);
@@ -11,8 +11,8 @@ export const WithBlurEffect = ({ applyBlur, children }) => {
 
   return (
     <span
-      className={(applyBlur && !isPeekMode) ? 'blur-effect' : null}
-      onClick={togglePeek}
+      className={(applyBlur && !isInPeekMode) ? 'blur-effect' : null}
+      onClick={togglePeekMode}
     >
       {children}
     </span>
