@@ -1,5 +1,5 @@
-/** Temporary solution to theming **/
-/** TODO: implement proper theming when @craco/craco supports CRA@5 and @semantic-ui-react/craco-less supports craco@7 **/
+/** Temporary implementation of dark theme **/
+/** TODO: implement dark theme properly when @craco/craco supports CRA@5 and @semantic-ui-react/craco-less supports craco@7 **/
 
 html, body {
   font-size: 18px;
@@ -11,54 +11,3 @@ html {
   -o-filter: invert(100%);
   -ms-filter: invert(100%);
 }
-
-/* body {
-  background-color: #495057;
-  color: #f8f9fa;
-}
-
-.ui.menu, .ui.menu .item {
-  background-color: #212529;
-  color: #f8f9fa;
-}
-
-.ui.table {
-  background-color: #343a40;
-  color: #f8f9fa;
-  border-color: #adb5bd;
-}
-
-.ui.table thead th {
-  background-color: #212529;
-  color: #f8f9fa;
-}
-
-.ui.celled.table tr td, .ui.celled.table tr th {
-  border-top-color: #adb5bd;
-  border-right-color: #adb5bd;
-  border-bottom-color: #adb5bd;
-  border-left-color: #adb5bd;
-}
-
-.ui.icon.input i {
-  color: #adb5bd;
-}
-
-.ui.input > input, .ui.input > input:focus {
-  background-color: #343a40;
-  border-color: #adb5bd;
-  color: #f8f9fa;
-}
-
-.ui.input > input::placeholder {
-  color: #adb5bd;
-}
-
-.ui.input > input:focus::placeholder {
-  color: #6c757d;
-}
-
-.ui.button {
-  background-color: #343a40;
-  color: #f8f9fa;
-} */
