@@ -1,9 +1,15 @@
 import React from 'react';
 import { Container, Menu } from 'semantic-ui-react';
+import { AboutModal } from '../AboutModal';
 import { CsvImportModal } from '../CsvImportModal';
 import { WordModal } from '../WordModal';
 
-export const MainMenu = ({ addWord, importFromCsv, exportAsCsv }) => (
+export const MainMenu = ({
+  addWord,
+  importFromCsv,
+  exportAsCsv,
+  appVersion
+}) => (
   <Menu fixed='top'>
     <Container>
       <Menu.Item header>
@@ -21,9 +27,10 @@ export const MainMenu = ({ addWord, importFromCsv, exportAsCsv }) => (
         Export
       </Menu.Item>
       <Menu.Menu position='right'>
-        <Menu.Item onClick={() => alert("You clicked About")}>
-          About
-        </Menu.Item>
+        <AboutModal
+          trigger={<Menu.Item>About</Menu.Item>}
+          appVersion={appVersion}
+        />
       </Menu.Menu>
     </Container>
   </Menu>

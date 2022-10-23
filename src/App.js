@@ -34,6 +34,7 @@ export const App = () => {
         addWord={addWord}
         importFromCsv={importFromCsv}
         exportAsCsv={downloadAsCsv}
+        appVersion={process.env.REACT_APP_VERSION}
       />
       <WordsTable words={words} updateWord={updateWord} />
     </div>
