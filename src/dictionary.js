@@ -1,8 +1,8 @@
 import { request as requestIdleCallbackShim } from 'requestidlecallback';
 import { CsvParser } from './lib/CsvParser';
-import { WordsRepository } from './lib/WordsRepository';
+import { Dictionary } from './lib/Dictionary';
 
-export const wordsRepository = new WordsRepository(
+export const dictionary = new Dictionary(
   window.localStorage,
   requestIdleCallbackShim,
   new CsvParser()

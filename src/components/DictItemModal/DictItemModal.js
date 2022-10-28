@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import { WordForm } from '../WordForm';
+import { DictItemForm } from '../DictItemForm';
 
-const WORD_FORM_ID = 'word-form';
+const DICT_ITEM_FORM_ID = 'dict-item-form';
 
-export const WordModal = ({ trigger, word, saveWord }) => {
+export const DictItemModal = ({ trigger, dictItem, saveDictItem }) => {
   const [isOpen, setIsOpen] = useState(false);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
-  const saveWordAndClose = (...args) => {
-    saveWord(...args);
+  const saveDictItemAndClose = (...args) => {
+    saveDictItem(...args);
     close();
   };
 
@@ -27,17 +27,17 @@ export const WordModal = ({ trigger, word, saveWord }) => {
     >
       <Modal.Header>Save word or idiom</Modal.Header>
       <Modal.Content>
-        <WordForm
-          formId={WORD_FORM_ID}
-          word={word}
-          saveWord={saveWordAndClose}
+        <DictItemForm
+          formId={DICT_ITEM_FORM_ID}
+          dictItem={dictItem}
+          saveDictItem={saveDictItemAndClose}
         />
       </Modal.Content>
       <Modal.Actions>
         <Button color='teal' onClick={close}>
           Cancel
         </Button>
-        <Button type='submit' form={WORD_FORM_ID} color='pink'>
+        <Button type='submit' form={DICT_ITEM_FORM_ID} color='pink'>
           Save
         </Button>
       </Modal.Actions>

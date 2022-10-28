@@ -3,7 +3,7 @@ import debounce from 'debounce';
 import { Container, Dropdown, Input, Menu } from 'semantic-ui-react';
 import { HidingMode, SortingMode } from './constants';
 
-export const WordsTableMenu = ({
+export const DictItemsTableMenu = ({
   setSearch,
   setSortingMode,
   setHidingMode
@@ -37,7 +37,7 @@ export const WordsTableMenu = ({
                 />
                 <Dropdown.Item
                   text='Hide words'
-                  onClick={() => setHidingMode(HidingMode.NAMES_HIDDEN)}
+                  onClick={() => setHidingMode(HidingMode.WORDS_HIDDEN)}
                 />
                 <Dropdown.Item
                   text='Hide meanings'
@@ -62,11 +62,11 @@ export const WordsTableMenu = ({
                 />
                 <Dropdown.Item
                   text='A-Z'
-                  onClick={() => setSortingMode(SortingMode.NAME_ASC)}
+                  onClick={() => setSortingMode(SortingMode.WORD_ASC)}
                 />
                 <Dropdown.Item
                   text='Z-A'
-                  onClick={() => setSortingMode(SortingMode.NAME_DESC)}
+                  onClick={() => setSortingMode(SortingMode.WORD_DESC)}
                 />
               </Dropdown.Menu>
             </Dropdown>

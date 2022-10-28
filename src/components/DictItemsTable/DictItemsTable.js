@@ -1,11 +1,11 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
+import { DictItemModal } from '../DictItemModal';
 import { WithBlurEffect } from '../WithBlurEffect';
-import { WordModal } from '../WordModal';
 import { HidingMode } from './constants';
 
-export const WordsTable = ({ hidingMode, words, updateWord }) => {
-  const shouldBlurNames = hidingMode === HidingMode.NAMES_HIDDEN;
+export const DictItemsTable = ({ hidingMode, dictItems, updateDictItem }) => {
+  const shouldBlurNames = hidingMode === HidingMode.WORDS_HIDDEN;
   const shouldBlurMeanings = hidingMode === HidingMode.MEANINGS_HIDDEN;
 
   return (
@@ -18,20 +18,20 @@ export const WordsTable = ({ hidingMode, words, updateWord }) => {
       </Table.Header>
 
       <Table.Body>
-        {words.map(word => (
-          <Table.Row key={word.name}>
+        {dictItems.map(di => (
+          <Table.Row key={di.word}>
             <Table.Cell>
               <WithBlurEffect applyBlur={shouldBlurNames}>
-                <WordModal
-                  trigger={<a href='#'>{word.name}</a>}
-                  word={word}
-                  saveWord={updateWord}
+                <DictItemModal
+                  trigger={<a href='#'>{di.word}</a>}
+                  dictItem={di}
+                  saveDictItem={updateDictItem}
                 />
               </WithBlurEffect>
             </Table.Cell>
             <Table.Cell>
               <WithBlurEffect applyBlur={shouldBlurMeanings}>
-                {word.meaning}
+                {di.meaning}
               </WithBlurEffect>
             </Table.Cell>
           </Table.Row>

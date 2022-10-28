@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react';
 
-export const WordForm = ({ formId, word, saveWord }) => {
-  const [updatedName, updateName] = useState(word ? word.name : '');
-  const [updatedMeaning, updateMeaning] = useState(word ? word.meaning : '');
+export const DictItemForm = ({ formId, dictItem, saveDictItem }) => {
+  const [updatedWord, updateWord] = useState(dictItem ? dictItem.word : '');
+  const [updatedMeaning, updateMeaning] = useState(dictItem ? dictItem.meaning : '');
 
   const submit = () => {
-    if (!updatedName || !updatedMeaning) {
+    if (!updatedWord || !updatedMeaning) {
       return;
     }
 
-    saveWord({
-      name: updatedName,
+    saveDictItem({
+      word: updatedWord,
       meaning: updatedMeaning
     });
   };
@@ -21,9 +21,9 @@ export const WordForm = ({ formId, word, saveWord }) => {
       <Form.Field>
         <label>Word or idiom</label>
         <input
-          readOnly={!!word}
-          value={updatedName}
-          onChange={e => updateName(e.target.value)}
+          readOnly={!!dictItem}
+          value={updatedWord}
+          onChange={e => updateWord(e.target.value)}
         />
       </Form.Field>
       <Form.Field>

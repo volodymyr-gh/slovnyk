@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
+import { DictItemsTable } from './components/DictItemsTable';
 import { MainMenu } from './components/MainMenu';
-import { WordsTable } from './components/WordsTable';
 import { createCsvDownloadLink } from './helpers';
-import { wordsRepository } from './wordsRepository';
+import { dictionary } from './dictionary';
 
 export const App = () => {
-  const [words, setWords] = useState(wordsRepository.getAllWords());
+  const [dictItems, setDictItems] = useState(dictionary.getAllItems());
 
-  const addWord = ({ name, meaning }) =>
-    setWords(wordsRepository.addWord({ name, meaning }));
+  const addDictItem = ({ word, meaning }) =>
+    setDictItems(dictionary.addItem({ word, meaning }));
 
   const importFromCsv = (file) => {
-    wordsRepository.importFromCsv(file)
-      .then(setWords)
+    dictionary.importFromCsv(file)
+      .then(setDictItems)
       .catch(() => alert('Failed to import CSV file'));
   };
 
   const downloadAsCsv = () => {
-    const csv = wordsRepository.exportAsCsv();
+    const csv = dictionary.exportAsCsv();
     const link = createCsvDownloadLink(csv);
 
     document.body.appendChild(link);
@@ -25,21 +25,21 @@ export const App = () => {
     document.body.removeChild(link);
   };
 
-  const updateWord = ({ name, meaning }) =>
-    setWords(wordsRepository.updateWord({ name, meaning }));
+  const updateDictItem = ({ word, meaning }) =>
+    setDictItems(dictionary.updateItem({ word, meaning }));
 
   return (
     <div id="app">
       <MainMenu
-        addWord={addWord}
+        addDictItem={addDictItem}
         importFromCsv={importFromCsv}
         exportAsCsv={downloadAsCsv}
         appVersion={process.env.REACT_APP_VERSION}
       />
-      <WordsTable
-        words={words}
-        addWord={addWord}
-        updateWord={updateWord}
+      <DictItemsTable
+        dictItems={dictItems}
+        addDictItem={addDictItem}
+        updateDictItem={updateDictItem}
       />
     </div>
   );

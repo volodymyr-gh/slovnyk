@@ -2,43 +2,43 @@ import React, { useState } from 'react';
 import { Container } from 'semantic-ui-react';
 import { pipe } from '../../helpers';
 import { HidingMode, SortingMode } from './constants';
-import { getFilterByNameFn, getSortFn } from './helpers';
-import { WordsTable } from './WordsTable';
-import { WordsTableMenu } from './WordsTableMenu';
-import { WordsTablePlaceholder } from './WordsTablePlaceholder';
+import { getFilterByWordFn, getSortFn } from './helpers';
+import { DictItemsTable } from './DictItemsTable';
+import { DictItemsTableMenu } from './DictItemsTableMenu';
+import { DictItemsTablePlaceholder } from './DictItemsTablePlaceholder';
 
-export const WordsTableContainer = ({
-  words: initialWords,
-  addWord,
-  updateWord
+export const DictItemsTableContainer = ({
+  dictItems: initialDictItems,
+  addDictItem,
+  updateDictItem
 }) => {
   const [search, setSearch] = useState('');
   const [hidingMode, setHidingMode] = useState(HidingMode.ALL_VISIBLE);
   const [sortingMode, setSortingMode] = useState(SortingMode.DATE_ADDED_DESC);
 
   const sort = getSortFn(sortingMode);
-  const filterByName = getFilterByNameFn(search);
+  const filterByWord = getFilterByWordFn(search);
 
-  const words = pipe(filterByName, sort)(initialWords);
+  const dictItems = pipe(filterByWord, sort)(initialDictItems);
 
   return (
     <>
-      <WordsTableMenu
+      <DictItemsTableMenu
         setSearch={setSearch}
         setSortingMode={setSortingMode}
         setHidingMode={setHidingMode}
       />
       <Container style={{ marginTop: '2em', paddingBottom: '4em' }}>
-        {words.length > 0 ? (
-          <WordsTable
+        {dictItems.length > 0 ? (
+          <DictItemsTable
             hidingMode={hidingMode}
-            words={words}
-            updateWord={updateWord}
+            dictItems={dictItems}
+            updateDictItem={updateDictItem}
           />
         ) : (
-          <WordsTablePlaceholder
+          <DictItemsTablePlaceholder
             search={search}
-            addWord={addWord}
+            addDictItem={addDictItem}
           />
         )}
       </Container>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Message } from 'semantic-ui-react';
-import { WordModal } from '../WordModal';
+import { DictItemModal } from '../DictItemModal';
 
-export const WordsTablePlaceholder = ({ search, addWord }) => {
-  const wordModalTrigger = (
+export const DictItemsTablePlaceholder = ({ search, addDictItem }) => {
+  const dictItemModalTrigger = (
     <Button style={{ marginLeft: '1em' }} color='pink'>
       Add
     </Button>
@@ -14,10 +14,10 @@ export const WordsTablePlaceholder = ({ search, addWord }) => {
       {search.length > 0 ? (
         <>
           "{search}" not found
-          <WordModal
-            trigger={wordModalTrigger}
-            word={{ name: search, meaning: '' }}
-            saveWord={addWord}
+          <DictItemModal
+            trigger={dictItemModalTrigger}
+            dictItem={{ word: search, meaning: '' }}
+            saveDictItem={addDictItem}
           />
         </>
       ) : (

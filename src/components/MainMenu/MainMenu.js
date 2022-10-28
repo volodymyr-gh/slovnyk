@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, Menu } from 'semantic-ui-react';
 import { AboutModal } from '../AboutModal';
 import { CsvImportModal } from '../CsvImportModal';
-import { WordModal } from '../WordModal';
+import { DictItemModal } from '../DictItemModal';
 
 export const MainMenu = ({
-  addWord,
+  addDictItem,
   importFromCsv,
   exportAsCsv,
   appVersion
@@ -15,9 +15,9 @@ export const MainMenu = ({
       <Menu.Item header>
         Slovnyk
       </Menu.Item>
-      <WordModal
+      <DictItemModal
         trigger={<Menu.Item>Add</Menu.Item>}
-        saveWord={addWord}
+        saveDictItem={addDictItem}
       />
       <CsvImportModal
         trigger={<Menu.Item>Import</Menu.Item>}
