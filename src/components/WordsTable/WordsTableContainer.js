@@ -18,7 +18,6 @@ export const WordsTableContainer = ({ words: initialWords, updateWord }) => {
   return (
     <>
       <WordsTableMenu
-        search={search}
         setSearch={setSearch}
         setSortingMode={setSortingMode}
         setHidingMode={setHidingMode}
