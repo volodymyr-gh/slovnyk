@@ -1,9 +1,12 @@
 import { SortingMode } from './constants';
 
-export const getFilterByNameFn = name => words =>
-  name
-    ? words.filter(w => w.name.startsWith(name))
+export const getFilterByNameFn = (name) => {
+  const re = new RegExp(`^${name}`, 'i');
+
+  return words => name
+    ? words.filter(w => re.test(w.name))
     : words;
+};
 
 const compareNames = (name1, name2) => {
   if (name1 > name2) return 1;
