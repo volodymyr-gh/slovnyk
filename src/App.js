@@ -36,7 +36,11 @@ export const App = () => {
         exportAsCsv={downloadAsCsv}
         appVersion={process.env.REACT_APP_VERSION}
       />
-      <WordsTable words={words} updateWord={updateWord} />
+      <WordsTable
+        words={words}
+        addWord={addWord}
+        updateWord={updateWord}
+      />
     </div>
   );
 };
