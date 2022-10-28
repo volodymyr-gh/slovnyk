@@ -22,7 +22,7 @@ export const AboutModal = ({ trigger, appVersion }) => {
         <p>Version {appVersion}</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='green' onClick={close}>
+        <Button color='pink' onClick={close}>
           OK
         </Button>
       </Modal.Actions>

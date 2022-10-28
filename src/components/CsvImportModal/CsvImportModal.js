@@ -33,10 +33,10 @@ export const CsvImportModal = ({ trigger, importFromCsv }) => {
         />
       </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={close}>
+        <Button color='teal' onClick={close}>
           Cancel
         </Button>
-        <Button type='submit' form={CSV_IMPORT_FORM_ID} color='green'>
+        <Button type='submit' form={CSV_IMPORT_FORM_ID} color='pink'>
           Import
         </Button>
       </Modal.Actions>

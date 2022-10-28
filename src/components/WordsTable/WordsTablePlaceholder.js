@@ -4,7 +4,7 @@ import { WordModal } from '../WordModal';
 
 export const WordsTablePlaceholder = ({ search, addWord }) => {
   const wordModalTrigger = (
-    <Button style={{ marginLeft: '1em' }} color='green'>
+    <Button style={{ marginLeft: '1em' }} color='pink'>
       Add
     </Button>
   );
