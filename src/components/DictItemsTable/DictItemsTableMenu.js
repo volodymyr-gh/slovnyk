@@ -9,6 +9,7 @@ export const DictItemsTableMenu = ({
   setHidingMode
 }) => {
   const onSearchInputChange = debounce(e => setSearch(e.target.value), 500);
+  const onSearchInputClick = e => e.target.select();
 
   return (
     <Menu secondary>
@@ -18,6 +19,7 @@ export const DictItemsTableMenu = ({
             icon='search'
             placeholder='Search...'
             onChange={onSearchInputChange}
+            onClick={onSearchInputClick}
           />
         </Menu.Item>
         <Menu.Menu position='right'>
